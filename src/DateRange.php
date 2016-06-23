@@ -97,4 +97,24 @@ class DateRange
     {
         return new \DatePeriod($this->startDate, $dateInterval, $this->endDate);
     }
+
+    /**
+     * @param DateRange $dateRange
+     * @return mixed
+     */
+    public static function toString(DateRange $dateRange)
+    {
+        return sprintf('[%s,%s]', $dateRange->getStartDate()->format('Y-m-d'), $dateRange->getEndDate()->format('Y-m-d'));
+    }
+
+    /**
+     * @param $string
+     * @return DateRange
+     */
+    public static function fromString($string)
+    {
+        $clean = strtr($string, ['[' => '', ']' => '', '(' => '', ')' => '']);
+        list($startDate, $endDate) = explode(',', $clean);
+        return new self(new \DateTime($startDate), new \DateTime($endDate));
+    }
 }
