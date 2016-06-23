@@ -1,0 +1,20 @@
+{
+  "name": "salamek/php-daterange",
+  "description": "Php date range implementation, usualy used in PgSQL database",
+  "keywords": ["date", "range", "pgsql", "daterange"],
+  "homepage": "https://github.com/Salamek/php-daterange",
+  "license": ["BSD-3-Clause", "GPL-3.0"],
+  "authors": [
+    {
+      "name": "Adam Schubet",
+      "homepage": "http://www.salamek.cz"
+    }
+  ],
+  "autoload": {
+    "classmap": ["src/"]
+  },
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "minimum-stability": "dev"
+}
