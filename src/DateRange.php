@@ -100,7 +100,7 @@ class DateRange
 
     /**
      * @param DateRange $dateRange
-     * @return mixed
+     * @return string
      */
     public static function toString(DateRange $dateRange)
     {
@@ -116,5 +116,13 @@ class DateRange
         $clean = strtr($string, ['[' => '', ']' => '', '(' => '', ')' => '']);
         list($startDate, $endDate) = explode(',', $clean);
         return new self(new \DateTime($startDate), new \DateTime($endDate));
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return self::toString($this);
     }
 }
