@@ -2,7 +2,7 @@
 
 Php date range implementation, usualy used in PgSQL database
 
-```
+```php
 <?php
 
 $dateRange = new Salamek\DateRange(\DateTimeInterface $startDate, \DateTimeInterface $endDate);
