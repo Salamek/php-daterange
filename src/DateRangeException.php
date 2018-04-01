@@ -51,88 +51,9 @@
 namespace Salamek;
 
 /**
- * Class DateRange
+ * Class DateRangeException
  * @package Salamek
  */
-class DateRange
+class DateRangeException extends \Exception
 {
-    /** @var \DateTimeInterface  */
-    private $startDate;
-
-    /** @var \DateTimeInterface  */
-    private $endDate;
-
-    /**
-     * DateRange constructor.
-     * @param \DateTimeInterface $startDate
-     * @param \DateTimeInterface $endDate
-     * @throws DateRangeException
-     */
-    public function __construct(\DateTimeInterface $startDate, \DateTimeInterface $endDate)
-    {
-        if ($startDate > $endDate)
-        {
-            throw new DateRangeException(sprintf(
-                '$startDate is bigger than $endDate (%s > %s)',
-                $startDate->format(\DateTime::ATOM),
-                $endDate->format(\DateTime::ATOM)
-            ));
-        }
-
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
-    }
-
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param \DateInterval $dateInterval
-     * @return \DatePeriod
-     */
-    public function getDatePeriod(\DateInterval $dateInterval)
-    {
-        return new \DatePeriod($this->startDate, $dateInterval, $this->endDate);
-    }
-
-    /**
-     * @param DateRange $dateRange
-     * @return string
-     */
-    public static function toString(DateRange $dateRange)
-    {
-        return sprintf('[%s,%s]', $dateRange->getStartDate()->format('Y-m-d'), $dateRange->getEndDate()->format('Y-m-d'));
-    }
-
-    /**
-     * @param $string
-     * @return DateRange
-     */
-    public static function fromString($string)
-    {
-        $clean = strtr($string, ['[' => '', ']' => '', '(' => '', ')' => '']);
-        list($startDate, $endDate) = explode(',', $clean);
-        return new self(new \DateTime($startDate), new \DateTime($endDate));
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return self::toString($this);
-    }
 }
